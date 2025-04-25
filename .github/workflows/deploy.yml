@@ -1,0 +1,41 @@
+name: Build & Publish Company Page
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # (If you have a build step—installing npm, Jekyll, Eleventy, etc—do it here.)
+      - name: Install dependencies
+        run: |
+          # example for Node
+          npm ci
+
+      - name: Inject hidden data
+        # this env var comes from your repo's Secrets
+        env:
+          HIDDEN_DATA: ${{ secrets.HIDDEN_DATA }}
+        run: |
+          mkdir -p public/data
+          echo "$HIDDEN_DATA" > public/data/hidden.json
+
+      - name: Build site
+        run: |
+          # your build command, e.g.:
+          npm run build
+          # OR, if you're using Jekyll:
+          # bundle exec jekyll build -d public
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
