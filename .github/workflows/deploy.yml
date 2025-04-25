@@ -2,7 +2,7 @@ name: Build & Publish Company Page
 
 on:
   push:
-    branches: [ gh-pages ]
+    branches: [ main ]
 
 jobs:
   publish:
@@ -12,14 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # (If you have a build step—installing npm, Jekyll, Eleventy, etc—do it here.)
       - name: Install dependencies
         run: |
-          # example for Node
-          npm ci
+          npm install
 
       - name: Inject hidden data
-        # this env var comes from your repo's Secrets
         env:
           HIDDEN_DATA: ${{ secrets.HIDDEN_DATA }}
         run: |
@@ -28,10 +25,7 @@ jobs:
 
       - name: Build site
         run: |
-          # your build command, e.g.:
           npm run build
-          # OR, if you're using Jekyll:
-          # bundle exec jekyll build -d public
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
