@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Web Page</h1>
+    </header>
+    <main>
+        <section id="content">
+            <p>This is a simple web page.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 My Web Page</p>
+    </footer>
+    <script>
+        // Inline JavaScript for demonstration
+        console.log("Page loaded successfully.");
+        document.addEventListener("DOMContentLoaded", function() {
+            const content = document.getElementById('content');
+            content.innerHTML += '<p>Dynamic content added!</p>';
+        });
+    </script>
+    <style>
+        /* Inline CSS for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #35424a;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #35424a;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        #content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #content p {
+            margin: 0;
+        }
+        #content p + p {
+            margin-top: 10px;
+        }
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            header, footer {
+                padding: 5px 0;
+            }
+        }
+    </style>
+</body>
+</html>
