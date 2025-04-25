@@ -30,7 +30,7 @@ jobs:
 
       - name: Build site
         run: |
-          npm run build
+          npm run depoloy
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
